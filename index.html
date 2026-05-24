@@ -3,42 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voucher Generator - Sistem Penjanaan Voucher Pembayaran</title>
+    <title>Voucher Generator - Export to Excel</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .header {
-            text-align: center;
-            color: white;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { text-align: center; color: white; margin-bottom: 30px; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
         .card {
             background: white;
             border-radius: 15px;
@@ -46,7 +22,6 @@
             margin-bottom: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-
         .card-title {
             font-size: 1.3em;
             font-weight: bold;
@@ -55,35 +30,15 @@
             padding-bottom: 10px;
             border-bottom: 2px solid #667eea;
         }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-            color: #555;
-        }
-
-        input[type="text"],
-        input[type="file"],
-        select,
-        textarea {
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 500; color: #555; }
+        input[type="text"], input[type="file"], select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 14px;
         }
-
-        input[type="text"]:focus,
-        select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
         .btn {
             padding: 10px 20px;
             border: none;
@@ -93,44 +48,10 @@
             font-weight: 500;
             transition: all 0.3s ease;
         }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-secondary {
-            background: #6c757d;
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background: #5a6268;
-        }
-
-        .btn-success {
-            background: #28a745;
-            color: white;
-        }
-
-        .btn-success:hover {
-            background: #218838;
-        }
-
-        .btn-warning {
-            background: #ffc107;
-            color: #333;
-        }
-
-        .btn-warning:hover {
-            background: #e0a800;
-        }
-
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); }
+        .btn-success { background: #28a745; color: white; }
+        .btn-warning { background: #ffc107; color: #333; }
         .supplier-list {
             max-height: 200px;
             overflow-y: auto;
@@ -138,7 +59,6 @@
             border-radius: 8px;
             padding: 10px;
         }
-
         .supplier-item {
             padding: 8px;
             margin: 5px 0;
@@ -147,122 +67,40 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
-
-        .supplier-item:hover {
-            background: #e9ecef;
-        }
-
-        .supplier-item.selected {
-            background: #667eea;
-            color: white;
-        }
-
+        .supplier-item:hover { background: #e9ecef; }
+        .supplier-item.selected { background: #667eea; color: white; }
         .status {
             padding: 15px;
             border-radius: 8px;
             margin-top: 20px;
             font-size: 14px;
         }
-
-        .status-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .status-error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .status-info {
-            background: #d1ecf1;
-            color: #0c5460;
-            border: 1px solid #bee5eb;
-        }
-
-        .row {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .col {
-            flex: 1;
-            min-width: 250px;
-        }
-
-        .company-combo {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        .preview-table {
-            overflow-x: auto;
-            margin-top: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background: #667eea;
-            color: white;
-        }
-
-        tr:hover {
-            background: #f5f5f5;
-        }
-
-        .footer {
-            text-align: center;
-            color: white;
-            margin-top: 30px;
-            padding: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .row {
-                flex-direction: column;
-            }
-            .btn {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-        }
+        .status-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .status-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .status-info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        .row { display: flex; gap: 20px; flex-wrap: wrap; }
+        .col { flex: 1; min-width: 250px; }
+        .button-group { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; justify-content: center; }
+        .preview-table { overflow-x: auto; margin-top: 20px; max-height: 300px; overflow-y: auto; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px; text-align: left; border: 1px solid #ddd; }
+        th { background: #667eea; color: white; position: sticky; top: 0; }
+        .footer { text-align: center; color: white; margin-top: 30px; padding: 20px; }
+        @media (max-width: 768px) { .row { flex-direction: column; } .btn { width: 100%; margin-bottom: 10px; } }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>📄 Voucher Generator System</h1>
-            <p>Penjanaan Voucher Pembayaran Pembekal Secara Automatik</p>
+            <p>Penjanaan Voucher Pembayaran Pembekal - Export ke Excel (.xlsx)</p>
         </div>
 
         <div class="card">
-            <div class="card-title">1. 📂 Fail Data (Senarai Invoice & Pembekal)</div>
+            <div class="card-title">1. 📂 Fail Data (Excel/CSV)</div>
             <div class="form-group">
                 <input type="file" id="dataFile" accept=".xlsx,.xls,.csv" onchange="processDataFile(this)">
-                <small style="color: #666; display: block; margin-top: 5px;">Format: Excel (.xlsx, .xls) atau CSV - Column D: Nama Pembekal, Column C: No. Invoice, Column B: Perkara, Column H: Jumlah</small>
+                <small>Format: Column B (Perkara), Column C (No.Invoice), Column D (Pembekal), Column H (Jumlah)</small>
             </div>
         </div>
 
@@ -270,33 +108,21 @@
             <div class="col">
                 <div class="card">
                     <div class="card-title">2. 🏢 Nama Syarikat</div>
-                    <div class="form-group">
-                        <select id="companyName" class="company-combo">
-                            <option value="RPS PHARMACY">RPS PHARMACY</option>
-                            <option value="RPS PHARMACY ALOR SETAR">RPS PHARMACY ALOR SETAR</option>
-                            <option value="RPS PHARMACY LANGKAWI">RPS PHARMACY LANGKAWI</option>
-                            <option value="RPS CENANG PHARMACY">RPS CENANG PHARMACY</option>
-                            <option value="FARMASI TERATAI JR">FARMASI TERATAI JR</option>
-                            <option value="BLION PHARMACY">BLION PHARMACY</option>
-                        </select>
-                        <small>💡 Boleh taip nama lain terus dalam kotak</small>
-                    </div>
+                    <input type="text" id="companyName" list="companyList" placeholder="Pilih atau taip nama syarikat">
+                    <datalist id="companyList">
+                        <option>RPS PHARMACY</option>
+                        <option>RPS PHARMACY ALOR SETAR</option>
+                        <option>RPS PHARMACY LANGKAWI</option>
+                        <option>RPS CENANG PHARMACY</option>
+                        <option>FARMASI TERATAI JR</option>
+                        <option>BLION PHARMACY</option>
+                    </datalist>
                 </div>
             </div>
-
             <div class="col">
                 <div class="card">
-                    <div class="card-title">3. ⚙️ Mod Template</div>
-                    <div class="form-group">
-                        <select id="templateMode" onchange="toggleTemplateMode()">
-                            <option value="hardcoded">Guna Template Default (Dalam Sistem)</option>
-                            <option value="file">Guna Fail Template Sendiri</option>
-                        </select>
-                    </div>
-                    <div id="templateFileDiv" style="display: none;">
-                        <input type="file" id="templateFile" accept=".xlsx,.xls">
-                        <small>Pilih fail template Excel anda</small>
-                    </div>
+                    <div class="card-title">3. 📅 Tarikh Voucher</div>
+                    <input type="date" id="voucherDate" value="<?= date('Y-m-d') ?>">
                 </div>
             </div>
         </div>
@@ -309,7 +135,7 @@
             <div class="button-group">
                 <button class="btn btn-primary" onclick="loadSuppliers()">📋 Muat Senarai Pembekal</button>
                 <button class="btn btn-success" onclick="selectAllSuppliers()">✅ Pilih Semua</button>
-                <button class="btn btn-warning" onclick="deselectAllSuppliers()">❌ Nyah Pilih Semua</button>
+                <button class="btn btn-warning" onclick="deselectAllSuppliers()">❌ Nyah Pilih</button>
             </div>
         </div>
 
@@ -320,24 +146,24 @@
             </div>
         </div>
 
-        <div class="button-group" style="justify-content: center;">
-            <button class="btn btn-primary" onclick="generateVouchers()" style="padding: 15px 30px; font-size: 16px;">🚀 Generate Vouchers</button>
-            <button class="btn btn-secondary" onclick="clearAll()" style="padding: 15px 30px; font-size: 16px;">🗑️ Clear All</button>
+        <div class="button-group">
+            <button class="btn btn-primary" onclick="generateVouchers()" style="padding: 15px 30px; font-size: 16px;">🚀 Generate & Download Excel</button>
+            <button class="btn btn-warning" onclick="clearAll()" style="padding: 15px 30px; font-size: 16px;">🗑️ Clear All</button>
         </div>
 
         <div id="status" class="status status-info">
-            ✅ Sedia. <br>
-            📝 No. Invoice akan kekal format TEXT <br>
-            💰 Amount akan guna format nombor dengan koma <br>
-            📏 Column akan auto adjust width
+            ✅ Sedia.<br>
+            📝 No. Invoice akan kekal format TEXT<br>
+            💰 Amount akan guna format 1,567.00<br>
+            📎 Output: Fail Excel (.xlsx) siap dengan border dan format
         </div>
 
         <div class="footer">
-            <p>© 2024 Voucher Generator System | Auto-format Invoice & Amount</p>
+            <p>© 2024 Voucher Generator System | Export ke Excel dengan format profesional</p>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
     <script>
         let rawData = [];
         let suppliers = [];
@@ -358,16 +184,17 @@
                 for (let i = 1; i < jsonData.length; i++) {
                     const row = jsonData[i];
                     if (row[3] && row[3].toString().trim()) {
+                        let amount = parseFloat(row[7]) || 0;
                         rawData.push({
                             supplier: row[3].toString().trim(),
-                            invoiceNo: row[2] || "",
-                            description: row[1] || "",
-                            amount: row[7] || 0
+                            invoiceNo: row[2] ? row[2].toString().trim() : "",
+                            description: row[1] ? row[1].toString().trim() : "",
+                            amount: amount
                         });
                     }
                 }
                 
-                updateStatus("✅ Fail data berjaya dimuatkan! " + rawData.length + " rekod ditemui.", "success");
+                updateStatus(`✅ ${rawData.length} rekod ditemui.`, "success");
                 loadSuppliers();
                 showPreview();
             };
@@ -394,7 +221,7 @@
                 container.appendChild(div);
             });
             
-            updateStatus(`✅ ${suppliers.length} pembekal ditemui. Pilih pembekal untuk generate voucher.`, "success");
+            updateStatus(`✅ ${suppliers.length} pembekal ditemui.`, "success");
         }
 
         function toggleSupplier(supplier, element) {
@@ -410,17 +237,13 @@
         function selectAllSuppliers() {
             selectedSuppliers.clear();
             suppliers.forEach(s => selectedSuppliers.add(s));
-            document.querySelectorAll('.supplier-item').forEach(el => {
-                el.classList.add('selected');
-            });
+            document.querySelectorAll('.supplier-item').forEach(el => el.classList.add('selected'));
             updateStatus(`✅ ${selectedSuppliers.size} pembekal dipilih.`, "success");
         }
 
         function deselectAllSuppliers() {
             selectedSuppliers.clear();
-            document.querySelectorAll('.supplier-item').forEach(el => {
-                el.classList.remove('selected');
-            });
+            document.querySelectorAll('.supplier-item').forEach(el => el.classList.remove('selected'));
             updateStatus(`✅ Semua pembekal dinyahpilih.`, "info");
         }
 
@@ -435,18 +258,18 @@
             html += '<th>Bil.</th><th>No. Invoice</th><th>Perkara</th><th>Pembekal</th><th>Jumlah (RM)</th>';
             html += '</tr></thead><tbody>';
             
-            rawData.slice(0, 10).forEach((item, idx) => {
+            rawData.slice(0, 20).forEach((item, idx) => {
                 html += `<tr>
                     <td>${idx + 1}</td>
                     <td>${item.invoiceNo}</td>
-                    <td>${item.description.substring(0, 30)}</td>
+                    <td>${item.description.substring(0, 40)}</td>
                     <td>${item.supplier}</td>
-                    <td>${formatNumber(item.amount)}</td>
+                    <td style="text-align: right;">${formatNumber(item.amount)}</td>
                 </tr>`;
             });
             
-            if (rawData.length > 10) {
-                html += `<tr><td colspan="5" style="text-align: center;">... dan ${rawData.length - 10} rekod lagi</td></tr>`;
+            if (rawData.length > 20) {
+                html += `<tr><td colspan="5" style="text-align: center;">... dan ${rawData.length - 20} rekod lagi</td></tr>`;
             }
             
             html += '</tbody></table>';
@@ -454,14 +277,95 @@
         }
 
         function formatNumber(value) {
-            if (!value || isNaN(value)) return "0.00";
+            if (!value && value !== 0) return "0.00";
             return parseFloat(value).toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
 
-        function toggleTemplateMode() {
-            const mode = document.getElementById('templateMode').value;
-            const templateDiv = document.getElementById('templateFileDiv');
-            templateDiv.style.display = mode === 'file' ? 'block' : 'none';
+        function generateVoucherExcel(companyName, supplier, data, voucherDate) {
+            // Create workbook and worksheet
+            const wb = XLSX.utils.book_new();
+            
+            // Prepare data for Excel
+            const excelData = [];
+            
+            // Header section
+            excelData.push(["VOUCHER PEMBAYARAN"]);
+            excelData.push([""]);
+            excelData.push(["Nama Syarikat:", companyName]);
+            excelData.push(["Kepada:", supplier]);
+            excelData.push(["Tarikh:", voucherDate]);
+            excelData.push([""]);
+            
+            // Table header
+            excelData.push(["Bil. Invoice", "Perkara", "Jumlah (RM)"]);
+            
+            // Data rows
+            let totalAmount = 0;
+            for (const item of data) {
+                excelData.push([item.invoiceNo, item.description, item.amount]);
+                totalAmount += item.amount;
+            }
+            
+            // Empty row
+            excelData.push([""]);
+            
+            // Total row
+            excelData.push(["", "JUMLAH", totalAmount]);
+            
+            // Convert to sheet
+            const ws = XLSX.utils.aoa_to_sheet(excelData);
+            
+            // Apply column widths
+            ws['!cols'] = [
+                { wch: 20 },  // Column A - Invoice No
+                { wch: 40 },  // Column B - Description  
+                { wch: 15 }   // Column C - Amount
+            ];
+            
+            // Apply styling (basic - SheetJS limited styling)
+            // For better styling, we need to use xlsx-style but that's heavier
+            
+            // Set number format for amount column
+            const range = XLSX.utils.decode_range(ws['!ref']);
+            for (let row = 7; row <= range.e.r; row++) {
+                const cellAddress = XLSX.utils.encode_cell({ r: row, c: 2 });
+                if (ws[cellAddress] && typeof ws[cellAddress].v === 'number') {
+                    ws[cellAddress].z = '#,##0.00';
+                }
+            }
+            
+            // Bold for header
+            for (let col = 0; col <= 2; col++) {
+                const cellAddress = XLSX.utils.encode_cell({ r: 6, c: col });
+                if (ws[cellAddress]) {
+                    ws[cellAddress].s = { font: { bold: true } };
+                }
+            }
+            
+            // Bold for total row
+            const totalRow = excelData.length - 1;
+            const totalAmountCell = XLSX.utils.encode_cell({ r: totalRow, c: 2 });
+            if (ws[totalAmountCell]) {
+                ws[totalAmountCell].s = { font: { bold: true } };
+                ws[totalAmountCell].z = '#,##0.00';
+            }
+            
+            const totalLabelCell = XLSX.utils.encode_cell({ r: totalRow, c: 1 });
+            if (ws[totalLabelCell]) {
+                ws[totalLabelCell].s = { font: { bold: true } };
+            }
+            
+            // Add sheet to workbook
+            XLSX.utils.book_append_sheet(wb, ws, "Voucher");
+            
+            // Generate filename
+            const safeSupplier = supplier.replace(/[^a-z0-9]/gi, '_').substring(0, 30);
+            const fileName = `Voucher_${safeSupplier}_${voucherDate}.xlsx`;
+            
+            // Save file
+            XLSX.writeFile(wb, fileName);
+            
+            return fileName;
         }
 
         function generateVouchers() {
@@ -481,127 +385,47 @@
                 return;
             }
             
-            updateStatus("⏳ Sedang memproses voucher... Sila tunggu.", "info");
+            let voucherDate = document.getElementById('voucherDate').value;
+            if (!voucherDate) {
+                voucherDate = new Date().toISOString().split('T')[0];
+            }
+            
+            // Format date to dd/mm/yyyy
+            const formattedDate = voucherDate.split('-').reverse().join('/');
+            
+            updateStatus("⏳ Sedang memproses voucher Excel... Sila tunggu.", "info");
             
             setTimeout(() => {
                 try {
-                    const vouchers = [];
-                    const selectedSuppliersArray = Array.from(selectedSuppliers);
+                    const selectedArray = Array.from(selectedSuppliers);
+                    let successCount = 0;
                     
-                    for (const supplier of selectedSuppliersArray) {
+                    for (const supplier of selectedArray) {
                         const supplierData = rawData.filter(item => item.supplier === supplier);
-                        const voucher = generateVoucherHTML(companyName, supplier, supplierData);
-                        vouchers.push(voucher);
+                        if (supplierData.length > 0) {
+                            const fileName = generateVoucherExcel(companyName, supplier, supplierData, formattedDate);
+                            successCount++;
+                        }
                     }
                     
-                    downloadVouchers(vouchers);
-                    updateStatus(`✅ BERJAYA! ${vouchers.length} voucher telah dihasilkan.`, "success");
+                    updateStatus(`✅ BERJAYA! ${successCount} fail Excel telah dihasilkan dan dimuat turun.`, "success");
+                    
+                    if (successCount > 0) {
+                        setTimeout(() => {
+                            alert(`${successCount} voucher Excel telah dijana!\n\nFile disimpan dalam folder Downloads anda.\n\nFormat:\n- No. Invoice: TEXT (kekal 00123)\n- Amount: 1,567.00\n- Column width: auto adjust`);
+                        }, 500);
+                    }
+                    
                 } catch (error) {
                     updateStatus(`❌ GAGAL: ${error.message}`, "error");
                 }
             }, 100);
         }
 
-        function generateVoucherHTML(companyName, supplier, data) {
-            const today = new Date();
-            const dateStr = today.toLocaleDateString('en-MY');
-            const totalAmount = data.reduce((sum, item) => sum + (parseFloat(item.amount) || 0), 0);
-            
-            let html = `
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <meta charset="UTF-8">
-                <title>Voucher - ${supplier}</title>
-                <style>
-                    body { font-family: Arial, sans-serif; margin: 50px; }
-                    .voucher { max-width: 800px; margin: 0 auto; border: 1px solid #ddd; padding: 20px; }
-                    .header { text-align: center; margin-bottom: 30px; }
-                    .header h1 { color: #333; }
-                    .info-row { margin-bottom: 10px; }
-                    .info-label { font-weight: bold; display: inline-block; width: 120px; }
-                    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-                    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-                    th { background: #667eea; color: white; }
-                    .total { margin-top: 20px; text-align: right; font-weight: bold; font-size: 1.2em; }
-                    .footer { margin-top: 30px; text-align: center; font-size: 12px; color: #999; }
-                </style>
-            </head>
-            <body>
-                <div class="voucher">
-                    <div class="header">
-                        <h1>VOUCHER PEMBAYARAN</h1>
-                        <hr>
-                    </div>
-                    <div class="info-row"><span class="info-label">Nama Syarikat:</span> ${companyName}</div>
-                    <div class="info-row"><span class="info-label">Kepada:</span> ${supplier}</div>
-                    <div class="info-row"><span class="info-label">Tarikh:</span> ${dateStr}</div>
-                    
-                    <table>
-                        <thead>
-                            <tr><th>Bil. Invoice</th><th>Perkara</th><th>Jumlah (RM)</th></tr>
-                        </thead>
-                        <tbody>
-            `;
-            
-            data.forEach(item => {
-                html += `<tr>
-                    <td>${item.invoiceNo}</td>
-                    <td>${item.description}</td>
-                    <td style="text-align: right;">${formatNumber(item.amount)}</td>
-                </tr>`;
-            });
-            
-            html += `
-                        </tbody>
-                    </table>
-                    <div class="total">
-                        Jumlah: RM ${formatNumber(totalAmount)}
-                    </div>
-                    <div class="footer">
-                        <p>Disediakan oleh sistem Voucher Generator | Dicetak pada ${today.toString()}</p>
-                    </div>
-                </div>
-            </body>
-            </html>
-            `;
-            
-            return { supplier, html, totalAmount };
-        }
-
-        function downloadVouchers(vouchers) {
-            if (vouchers.length === 1) {
-                // Download single file
-                const blob = new Blob([vouchers[0].html], { type: 'text/html' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                const fileName = `Voucher_${vouchers[0].supplier.replace(/[^a-z0-9]/gi, '_')}_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.html`;
-                a.href = url;
-                a.download = fileName;
-                a.click();
-                URL.revokeObjectURL(url);
-            } else {
-                // Create zip for multiple files
-                alert(`${vouchers.length} voucher siap dijana.\n\nUntuk muat turun, setiap voucher akan dimuat turun satu persatu.`);
-                vouchers.forEach((voucher, idx) => {
-                    setTimeout(() => {
-                        const blob = new Blob([voucher.html], { type: 'text/html' });
-                        const url = URL.createObjectURL(blob);
-                        const a = document.createElement('a');
-                        const fileName = `Voucher_${voucher.supplier.replace(/[^a-z0-9]/gi, '_')}.html`;
-                        a.href = url;
-                        a.download = fileName;
-                        a.click();
-                        URL.revokeObjectURL(url);
-                    }, idx * 500);
-                });
-            }
-        }
-
         function updateStatus(message, type) {
             const statusDiv = document.getElementById('status');
             statusDiv.className = `status status-${type}`;
-            statusDiv.innerHTML = message;
+            statusDiv.innerHTML = message.replace(/\n/g, '<br>');
         }
 
         function clearAll() {
@@ -612,8 +436,7 @@
             document.getElementById('supplierList').innerHTML = '<p style="text-align: center; color: #999;">📂 Muat naik fail data terlebih dahulu</p>';
             document.getElementById('previewData').innerHTML = '<p style="text-align: center; color: #999;">📂 Preview data akan dipaparkan di sini</p>';
             document.getElementById('companyName').value = 'RPS PHARMACY';
-            document.getElementById('templateMode').value = 'hardcoded';
-            toggleTemplateMode();
+            document.getElementById('voucherDate').value = new Date().toISOString().split('T')[0];
             updateStatus("✅ Semua telah dibersihkan. Sila muat naik fail data.", "info");
         }
     </script>
